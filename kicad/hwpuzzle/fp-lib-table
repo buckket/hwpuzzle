@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "hwpuzzle")(type "KiCad")(uri "${KIPRJMOD}/hwpuzzle.pretty")(options "")(descr ""))
+)
