@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/pico.css">
+    <script src="static/firework.js"></script>
+    <meta charset="UTF-8">
+    <title>hwpuzzle</title>
+</head>
+<body>
+
+
+<main class="container">
+    <hgroup>
+        <h1><u>hwpuzzle</u></h1>
+        <h2>Whatever lol</h2>
+    </hgroup>
+
+    <article>
+        <header><h3>Stage 1</h3></header>
+
+        <p>
+            Somewhere in the surviving records it states that the puzzle follows a deterministic pattern.
+            Eventually it will reach the end of its sequence. The sequence seems to be rather long though.
+            It does not make sense to manually play along with the buttons to get that far.
+            Luckily a computer can do that job much better anyway, hopefully without making any mistakes along the way
+            if programmed right.
+        </p>
+
+        <p>
+            Try to program your microcontroller to play along until the end of the sequence is reached.
+        </p>
+
+        <footer>
+            {{ if not .Stage1 }}
+            <form action="/" method="post" style="width: 50%; margin-left: auto; margin-right: auto">
+                <label for="solution1">What's the length of the full sequence?</label><br>
+                <input type="text" id="solution1" name="solution1"><br>
+                <input type="submit" value="Submit">
+            </form>
+            {{ else }}
+            Stage 1 completed! ⭐
+            {{ end }}
+            {{ if .Stage1Message }}
+            <p>
+                {{ .Stage1Message }}
+            </p>
+            {{ end }}
+        </footer>
+
+    </article>
+
+
+    {{ if .Stage1}}
+
+    <article>
+        <header><h3>Stage 2</h3></header>
+
+        <p>
+            There has to be a reason why the sequence is not random.
+            Somehow a message is encoded here. This was the secret purpose of this device after all.
+        </p>
+
+        <p>
+            The only clues mentioned on the notes related to this seem to be some
+            gibberish about quaternary numeral systems, little-endian and the length of the sequence always being divisible by 4.
+        </p>
+
+        <p>
+            Now that the full sequence can easily and repeatedly be obtained, it should be possible to figure out the
+            secret message.
+            Program the microcontroller to play along and return the secret message after completion.
+        </p>
+
+        <footer>
+            {{ if not .Stage2 }}
+            <form action="/" method="post" style="width: 50%; margin-left: auto; margin-right: auto">
+                <label for="solution2">What's the decoded keyword?</label><br>
+                <input type="text" id="solution2" name="solution2"><br>
+                <input type="submit" value="Submit">
+            </form>
+            {{ else }}
+            Stage 2 completed! ⭐
+            {{ end }}
+            {{ if .Stage2Message }}
+            <p>
+                {{ .Stage2Message }}
+            </p>
+            {{ end }}
+        </footer>
+
+    </article>
+
+    {{ end }}
+
+    {{ if .Stage2 }}
+
+    <div id="fireworks" style="height: 25em"></div>
+
+    <script>
+        const container = document.querySelector('#fireworks')
+        const fireworks = new Fireworks.default(container)
+        fireworks.updateOptions({
+            boundaries: {
+                width: container.clientWidth,
+                height: container.clientHeight
+            }
+        })
+        fireworks.start()
+    </script>
+
+    {{ end }}
+
+</main>
+
+</body>
+</html>
